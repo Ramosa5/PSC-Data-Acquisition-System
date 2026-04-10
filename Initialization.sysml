@@ -3,5 +3,9 @@ package InitializationPackage {
     private import ScalarValues::*;
     private import DAQPackage::*;
 
-    item DAQ:DAQPackage::DataAcquisitionSystem;
+    part DAQ : DAQPackage::DataAcquisitionSystem;
+
+    part HEALIOS_Mission {
+        part ref DAQ : DAQPackage::DataAcquisitionSystem;
+    }
 }

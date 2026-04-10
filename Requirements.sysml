@@ -1,14 +1,23 @@
-package RequirementsPackage{
+package RequirementsPackage {
     private import ISQ::*;
     private import ScalarValues::*;
     private import InitializationPackage::*;
 
-requirement def <R_DAQ_001> Mission_Duration { 
-        doc /* The mission shall operate in orbit for a duration sufficient to generate statistically significant degradation and recovery data (Target: 1 Year). */
+requirement def <R_M_TEMPLATE> M_TEMPLATE { 
+        doc /* The Mission shall TBA. */
+        
+        subject HEALIOS_Mission references InitializationPackage::HEALIOS_Mission;
+
+        //frame concern Component_Reliability_Concern references StakeholderConcernsPackage::Component_Reliability_Concern;
+    }
+
+ requirement def <R_DAQ_TEMPLATE> DAQ_TEMPLATE_NAME specializes R_M_TEMPLATE {
+        doc /* The DAQ shall TBA. */
         
         subject DAQ references InitializationPackage::DAQ;
 
-        //frame concern Component_Reliability_Concern references StakeholderConcernsPackage::Component_Reliability_Concern;
-        //frame concern Perovskite_TRL_Advancement_Concern references StakeholderConcernsPackage::Perovskite_TRL_Advancement_Concern;
+        requirement <R_DAQ_TEMPLATE_a> DAQ_TEMPLATE_NAME_a {
+            doc /* The DAQ shall TBA. */
+        }
     }
-}
+ }
