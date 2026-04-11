@@ -1,6 +1,7 @@
 package RequirementsPackage {
     private import ISQ::*;
     private import ScalarValues::*;
+    private import VerificationPackage::*;
 
     requirement def <R_M_TEMPLATE> M_TEMPLATE { 
         doc /* The Mission shall TBA. */
@@ -25,15 +26,19 @@ package RequirementsPackage {
         
         subject Payload references InitializationPackage::Payload;
 
-        requirement <R_Payload_001_a> Payload_Solar_Cell_Types_Silicon_Nominal {
+        requirement def <R_Payload_001_a> Payload_Solar_Cell_Types_Silicon_Nominal {
             doc /* The Payload shall provide a module with standard silicon solar cells operating under nominal conditions. */
+
+            attribute method = VerificationMethod::ReviewOfDesign;
+            attribute verificationDescription : String = "TBA";
+            attribute status = VerificationStatus::NotStarted;
         }
 
-        requirement <R_Payload_001_b> Payload_Solar_Cell_Types_Perovskite_Nominal {
+        requirement def <R_Payload_001_b> Payload_Solar_Cell_Types_Perovskite_Nominal {
             doc /* The Payload shall provide a module with perovskite solar cells operating under nominal conditions. */
         }
 
-        requirement <R_Payload_001_c> Payload_Solar_Cell_Types_Perovskite_Healing {
+        requirement def <R_Payload_001_c> Payload_Solar_Cell_Types_Perovskite_Healing {
             doc /* The Payload shall provide a module with perovskite solar cells operating under self-healing conditions. */
         }
     }
@@ -43,15 +48,15 @@ package RequirementsPackage {
             
             subject Payload references InitializationPackage::Payload;
 
-            requirement <R_Payload_002_a> Payload_Measured_Values_Voltage {
+            requirement def <R_Payload_002_a> Payload_Measured_Values_Voltage {
                 doc /* The Payload shall enable characterisation of the performance of silicon solar cells and perovskite solar cells by measuring: open-circuit voltage. */
             }
 
-            requirement <R_Payload_002_b> Payload_Measured_Values_Current {
+            requirement def <R_Payload_002_b> Payload_Measured_Values_Current {
                 doc /* The Payload shall enable characterisation of the performance of silicon solar cells and perovskite solar cells by measuring short-circuit current. */
             }
 
-            requirement <R_Payload_002_c> Payload_Measured_Values_Power {
+            requirement def <R_Payload_002_c> Payload_Measured_Values_Power {
                 doc /* The Payload shall enable characterisation of the performance of silicon solar cells and perovskite solar cells by measuring maximum power output. */
             }
 
@@ -63,7 +68,7 @@ package RequirementsPackage {
 
         subject Payload references InitializationPackage::Payload;
 
-    requirement <R_Payload_003_a> Payload_Reverse_Bias_Scheduling {
+    requirement def <R_Payload_003_a> Payload_Reverse_Bias_Scheduling {
         doc /* The Payload shall be capable of applying a controlled reverse-bias voltage at predefined times, at least once per orbit. */
         }
     }
@@ -97,15 +102,15 @@ package RequirementsPackage {
 
         subject Payload references InitializationPackage::Payload;
 
-        requirement <R_Payload_008_a> Payload_Data_Acquisition_Mode {
-            doc /* In Data Acquisition Mode, the Payload shall actively collect and transmit data from the solar cell samples. */
+        requirement def <R_Payload_008_a> Payload_Data_Acquisition_Mode {
+            doc /* In Data Acquisition Mode, the Payload shall collect data from the solar cell samples at designated frequencies. */
         }
 
-        requirement <R_Payload_008_b> Payload_OFF_Mode {
+        requirement def <R_Payload_008_b> Payload_OFF_Mode {
             doc /* In OFF Mode, the Payload shall suspend all data collection and transmission activities to conserve power. */
         }
 
-        requirement <R_Payload_008_c> Payload_Mode_Launch {
+        requirement def <R_Payload_008_c> Payload_Mode_Launch {
             doc /* The Payload shall remain in the OFF Mode during the launch phase. */
         }
     }
@@ -121,5 +126,24 @@ package RequirementsPackage {
 
         subject Payload references InitializationPackage::Payload;
     }
+}
 
+
+package VerificationPackage {
+    private import ISQ::*;
+    private import ScalarValues::*;
+
+    enum def VerificationMethod {
+        enum Test;
+        enum Analysis;
+        enum Inspection;
+        enum ReviewOfDesign;
+    }
+    
+    enum def VerificationStatus {
+        enum NotStarted;
+        enum InProgress;
+        enum Passed;
+        enum Failed;
+    }
 }

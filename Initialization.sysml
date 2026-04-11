@@ -1,7 +1,6 @@
 package InitializationPackage {
     private import ISQ::*;
     private import ScalarValues::*;
-    private import DAQPackage::*;
 
     part PVModule;
     part DAQ : DAQPackage::DataAcquisitionSystem;
