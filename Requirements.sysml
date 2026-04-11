@@ -1,14 +1,10 @@
-package RequirementsPackage {
-    private import ISQ::*;
-    private import ScalarValues::*;
-    private import VerificationPackage::*;
-
+package RequirementsExample {
     requirement def <R_M_TEMPLATE> M_TEMPLATE { 
         doc /* The Mission shall TBA. */
             
         subject HEALIOS_Mission references InitializationPackage::HEALIOS_Mission;
 
-        //frame concern Component_Reliability_Concern references StakeholderConcernsPackage::Component_Reliability_Concern;
+        frame concern NameOfConcern references StakeholderConcernsPackage::Placeholder_Concern;
     }
 
     requirement def <R_Payload_TEMPLATE> Payload_TEMPLATE_NAME specializes R_M_TEMPLATE {
@@ -20,6 +16,12 @@ package RequirementsPackage {
             doc /* The Payload shall TBA. */
         }
     }
+}
+    
+package RequirementsPackage {
+    private import ISQ::*;
+    private import ScalarValues::*;
+    private import VerificationPackage::*;
 
     requirement def <R_Payload_001> Payload_Solar_Cell_Types {
         doc /* The Payload shall include silicon solar cells and perovskite solar cells. */
@@ -225,5 +227,28 @@ package VerificationPackage {
         enum InProgress;
         enum Passed;
         enum Failed;
+    }
+}
+
+package StakeholderConcernsPackage {
+    private import ISQ::*;
+    private import ScalarValues::*;
+
+    concern def Placeholder_Concern_Definition {
+        doc /* Placeholder concern for requirements that do not yet have an assigned stakeholder concern. */
+        subject HEALIOS_Mission references InitializationPackage::HEALIOS_Mission;
+        stakeholder stakeholder_name references Stakeholder;    
+    }
+
+    concern Placeholder_Concern : Placeholder_Concern_Definition {
+        doc /* Placeholder concern for requirements that do not yet have an assigned stakeholder concern. */
+    }
+
+    part def Placeholder_Stakeholder {
+        doc /* Placeholder for requirements that do not yet have an assigned stakeholder. */
+    }
+
+    part Stakeholder : Placeholder_Stakeholder {
+        doc /* A stakeholder of the HEALIOS mission. */
     }
 }
