@@ -22,13 +22,13 @@ package RequirementsPackage {
         }
 
     requirement def <R_M_001> M_Solar_Cell_Types { 
-        doc /* The mission shall utilise traditional solar cells as a control group to benchmark the degradation rates of the perovskite solar cells payload. */
+        doc /* The mission shall utilise silicon solar cells as a control group to benchmark the degradation rates of the perovskite solar cells payload. */
         
         subject HEALIOS_Mission references InitializationPackage::HEALIOS_Mission;
     }
 
     requirement def <R_DAQ_001> DAQ_Solar_Cell_Types specializes R_M_001 {
-        doc /* The DAQ shall support acquisition and identification of multiple solar cell types for comparative analysis. */
+        doc /* The DAQ shall provide data acquisition capabilitiesfor silicon and perovskite solar cells for comparative analysis. */
         
         subject DAQ references InitializationPackage::DAQ;
 
@@ -47,26 +47,26 @@ package RequirementsPackage {
 
 
     requirement def <R_M_002> M_Measured_Values { 
-            doc /* The mission shall characterise the performance of Perovskite Solar Cells (PSC) by measuring: open-circuit voltage, short-circuit current, maximum power output, angle of incidence for solar panels. */
+            doc /* The mission shall characterise the performance of perovskite solar cells by measuring: open-circuit voltage, short-circuit current, maximum power output, angle of incidence for solar panels. */
             
             subject HEALIOS_Mission references InitializationPackage::HEALIOS_Mission;
         }
 
     requirement def <R_DAQ_002> DAQ_Measured_Values specializes R_M_002 {
-            doc /* The DAQ shall enable characterisation of the performance of Perovskite Solar Cells (PSC). */
+            doc /* The DAQ shall enable characterisation of the performance of perovskite solar cells. */
             
             subject DAQ references InitializationPackage::DAQ;
 
             requirement <R_DAQ_002_a> DAQ_Measured_Values_a {
-                doc /* The DAQ shall enable characterisation of the performance of Perovskite Solar Cells (PSC) by measuring: open-circuit voltage. */
+                doc /* The DAQ shall enable characterisation of the performance of perovskite solar cells by measuring: open-circuit voltage. */
             }
 
             requirement <R_DAQ_002_b> DAQ_Measured_Values_b {
-                doc /* The DAQ shall enable characterisation of the performance of Perovskite Solar Cells (PSC) by measuring short-circuit current. */
+                doc /* The DAQ shall enable characterisation of the performance of perovskite solar cells by measuring short-circuit current. */
             }
 
             requirement <R_DAQ_002_c> DAQ_Measured_Values_c {
-                doc /* The DAQ shall enable characterisation of the performance of Perovskite Solar Cells (PSC) by measuring maximum power output. */
+                doc /* The DAQ shall enable characterisation of the performance of perovskite solar cells by measuring maximum power output. */
             }
 
             /* AOCS Requirement Package includes the requirement on angle of incidence for solar panels measurements.*/
