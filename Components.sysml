@@ -42,4 +42,13 @@ package Components {
         attribute maxVoltage : ISQ::SourceVoltageValue;
         attribute maxCurrent : ISQ::ElectricCurrentValue;
     }
+
+    part def MountingPlate {
+        doc /*
+         * Custom outer satellite mounting panel for PSCs and environmental sensors.
+         */
+        attribute mass : MassValue;
+        attribute numberOfSolarCells : Number;
+        attribute numberOfSensors : Number;
+    }
 }

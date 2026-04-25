@@ -1,4 +1,4 @@
-package DAQActions {
+package PayloadActions {
     private import Components::*;
     private import ISQ::*;
 
@@ -6,6 +6,10 @@ package DAQActions {
         doc /*
          * Top-level mission action for payload-related space segment operations.
          */
+    }
+
+    action def EnterSafeMode {
+
     }
 
     action def ProvideScientificMeasurements specializes PerformSpaceSegmentMission {
@@ -151,5 +155,9 @@ package DAQActions {
          * Returns a temperature value from a temperature-sensing context.
          */
         out temperature : ISQ::TemperatureValue;
+    }
+
+    state def SatelliteMode {
+        in abstract port switchCommand : DataBus;
     }
 }

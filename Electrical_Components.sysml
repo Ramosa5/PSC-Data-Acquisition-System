@@ -3,7 +3,7 @@ package ElectricalComponents {
     private import ScalarValues::*;
     private import EnvironmentalConditions::*;
     private import Components::*;
-    private import DAQActions::*;
+    private import PayloadActions::*;
 
     part def GeneralElectricalComponent {
         doc /*

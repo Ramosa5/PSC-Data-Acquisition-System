@@ -1,10 +1,10 @@
-package DAQPackage {
+package DataAcquisitionModule {
     private import ISQ::*;
     private import ScalarValues::*;
     private import ElectricalComponents::*;
     private import EnvironmentalConditions::*;
     private import Components::*;
-    private import DAQActions::*;
+    private import PayloadActions::*;
 
     part def PowerFilteringBlock {
         doc /*
@@ -31,19 +31,6 @@ package DAQPackage {
 
         interface output5VFeed : PowerTransferInterface
             connect powerFilter5V.filteredOutput to powerBusFiltered5V;
-    }
-
-    part def SolarCellsBlock {
-        doc /*
-         * Solar cell block containing perovskite and silicon reference arrays,
-         * together with connector and protection hardware.
-         */
-        part perovskiteSolarArrayCoupon : PerovskiteSolarArray [1..*];
-        part referenceSiliconSolarArrayCoupon : SolarArray [1..*];
-        part pscConnectorAndProtection : PerovskiteCellConnectorAndProtection;
-
-        port solarInput : ~StellarEnvironment;
-        port mpptController : MPPTControl;
     }
 
     part def MPPTBlock {
@@ -94,7 +81,7 @@ package DAQPackage {
             environmentTemperatureSensor.temperatureMeasurement;
     }
 
-    part def DataAcquisitionSystem {
+    part def DAQModule {
         doc /*
          * Top-level data acquisition system integrating power filtering,
          * solar cell interfaces, MPPT, IV sweep and reverse-bias circuitry,
@@ -109,7 +96,6 @@ package DAQPackage {
         port solarInput : ~StellarEnvironment;
 
         part powerFilteringBlock : PowerFilteringBlock;
-        part solarCellsBlock : SolarCellsBlock;
         part mpptBlock : MPPTBlock;
         part ivSweepAndReverseBiasBlock : IVSweepAndReverseBiasBlock;
         part environmentSensorsBlock : EnvironmentSensorsBlock;
@@ -132,15 +118,9 @@ package DAQPackage {
             connect powerFilteringBlock.powerBusFiltered3V3
             to mpptBlock.powerBusFiltered3V3;
 
-        interface externalEnvironmentToSolarCells
-            connect solarInput to solarCellsBlock.solarInput;
 
         interface externalEnvironmentToSensors
             connect solarInput to environmentSensorsBlock.solarInput;
-
-        interface solarCellsToMPPTControl : MPPTControlInterface
-            connect solarCellsBlock.mpptController
-            to mpptBlock.mpptController;
 
         perform action applyReverseBias : ApplyControlledReverseBiasToPSC;
         perform action measureIVCurves : MeasureIVCurvesOfPSC;
